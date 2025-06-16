@@ -2,8 +2,6 @@
 
 A responsive, React-based Markdown Previewer built as part of the [freeCodeCamp Front End Development Libraries Certification](https://www.freecodecamp.org/learn/front-end-development-libraries/). This project lets users write GitHub-flavored Markdown and instantly see the rendered HTML in real time.
 
-![screenshot](./screenshot.png)
-
 ---
 
 ## 🚀 Features
@@ -56,8 +54,9 @@ npm install
 # Start development server
 npm run dev
 
+```
+
 ## 📁 License
 
 This project is licensed under the MIT License.
 See the [LICENSE](LICENSE) file for full details.
-```
