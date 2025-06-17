@@ -35,39 +35,50 @@ function MarkdownPreviewer() {
     setIsEditorMax(false);
   };
 
+  const hiddenStyles = {
+    height: "0",
+    border: "1px solid transparent",
+    boxShadow: "none",
+    overflow: "hidden",
+    opacity: "0",
+  };
+
   return (
-    <main>
-      {!isPreviewerMax && (
-        <div className={`editor-container ${isEditorMax ? "maximize" : ""}`}>
-          <ToolBar
-            name="✏️&nbsp;&nbsp;Editor"
-            setMax={handleEditorMax}
-            isMax={isEditorMax}
-          />
-          <textarea
-            id="editor"
-            value={markdown}
-            onChange={handleChange}
-          ></textarea>
-        </div>
-      )}
-      {!isEditorMax && (
+    <main style={{ gap: isEditorMax || isPreviewerMax ? 0 : "15px" }}>
+      <div
+        className={`editor-container ${isEditorMax ? "maximize" : ""}`}
+        style={isPreviewerMax ? hiddenStyles : null}
+        aria-hidden={isPreviewerMax ? "true" : "false"}
+      >
+        <ToolBar
+          name="✏️&nbsp;&nbsp;Editor"
+          setMax={handleEditorMax}
+          isMax={isEditorMax}
+        />
+        <textarea
+          id="editor"
+          value={markdown}
+          onChange={handleChange}
+        ></textarea>
+      </div>
+
+      <div
+        className={`previewer-container ${isPreviewerMax ? "maximize" : ""}`}
+        style={isEditorMax ? hiddenStyles : null}
+        aria-hidden={isEditorMax ? "true" : "false"}
+      >
+        <ToolBar
+          name="📄&nbsp;&nbsp;Previewer"
+          setMax={handlePreviewerMax}
+          isMax={isPreviewerMax}
+        />
         <div
-          className={`previewer-container ${isPreviewerMax ? "maximize" : ""}`}
-        >
-          <ToolBar
-            name="📄&nbsp;&nbsp;Previewer"
-            setMax={handlePreviewerMax}
-            isMax={isPreviewerMax}
-          />
-          <div
-            id="preview"
-            dangerouslySetInnerHTML={{
-              __html: marked.parse(markdown),
-            }}
-          ></div>
-        </div>
-      )}
+          id="preview"
+          dangerouslySetInnerHTML={{
+            __html: marked.parse(markdown),
+          }}
+        ></div>
+      </div>
     </main>
   );
 }
