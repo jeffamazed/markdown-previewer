@@ -6,7 +6,7 @@ import Prism from "prismjs";
 import "prismjs/themes/prism.css";
 import "../styles.css";
 
-// handling line breaks
+// Marked options
 marked.setOptions({
   breaks: true,
   langPrefix: "language-",
